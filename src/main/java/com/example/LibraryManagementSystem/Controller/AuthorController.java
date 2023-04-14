@@ -3,10 +3,9 @@ package com.example.LibraryManagementSystem.Controller;
 import com.example.LibraryManagementSystem.Entity.Author;
 import com.example.LibraryManagementSystem.Service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/author")
@@ -18,4 +17,20 @@ public class AuthorController {
     public String addAuthor(@RequestBody Author author){
         return authorService.addAuthor(author);
     }
+
+    @DeleteMapping("/delete-by-id")
+    public String deleteById(@RequestParam("id")Integer id){
+        return authorService.deleteById(id);
+    }
+
+    @GetMapping("/get-by-id")
+    public Author getById(@RequestParam("id")Integer id){
+        return authorService.getById(id);
+    }
+
+    @GetMapping("/get-all")
+    public List<Author> getAll(){
+        return authorService.getAll();
+    }
+
 }

@@ -8,6 +8,7 @@ import com.example.LibraryManagementSystem.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,4 +37,37 @@ public class BookServiceimpl implements BookService {
         return "Book added";
 
     }
+
+    @Override
+    public Integer noOfBooksWrittenByAuthor(Author author) {
+        Author author1 = authorRepository.findById(author.getId()).get();
+        return author1.getBooks().size();
+    }
+
+    @Override
+    public List<Book> findAllTheBooks() {
+        List<Author> authors = authorRepository.findAll();
+        List<Book> allBooksList = new ArrayList<>();
+        for(Author author : authors){
+            List<Book> booksByAuthor = author.getBooks();
+            for(int i=0; i<booksByAuthor.size(); i++){
+                allBooksList.add(booksByAuthor.get(i));
+            }
+        }
+        return allBooksList;
+    }
+
+    @Override
+    public List<Book> findAllBooksOfAuthor(Author author) throws Exception {
+        Author author1;
+        try{
+            author1 = authorRepository.findById(author.getId()).get();
+        }
+        catch(Exception e){
+            throw new Exception("Author not present");
+        }
+        return author1.getBooks();
+    }
+
+
 }

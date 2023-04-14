@@ -1,5 +1,6 @@
 package com.example.LibraryManagementSystem.Entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class Author {
      private int age;
      private String email;
 
+     @JsonManagedReference
      @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
      List<Book> books = new ArrayList<>();
 

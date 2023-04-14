@@ -1,6 +1,7 @@
 package com.example.LibraryManagementSystem.Entity;
 
 import com.example.LibraryManagementSystem.Enum.Department;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class Student {
     private Department department;
     private String mobile;
 
+    @JsonManagedReference
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
     Card card;
 

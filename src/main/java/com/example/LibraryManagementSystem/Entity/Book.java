@@ -1,6 +1,7 @@
 package com.example.LibraryManagementSystem.Entity;
 
 import com.example.LibraryManagementSystem.Enum.Genre;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +30,6 @@ public class Book {
 
     @ManyToOne
     @JoinColumn
+    @JsonBackReference
     Author author;
-
 }
